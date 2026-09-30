@@ -42,11 +42,11 @@ C. Mechanická konstrukce & 3D modelování (CAD)
  - Mechanické uchycení: Integrované magnety a montážní body pro adaptér na sklo/palubní desku.
 
 D. Softwarová platforma (Backend & Frontend)
-- *Backend:* REST API server (Python / FastAPI nebo Django) s relační databází (PostgreSQL) nebo časovou databází pro telemetrii.
+- **Backend:** REST API server (Python / FastAPI nebo Django) s relační databází (PostgreSQL) nebo časovou databází pro telemetrii.
 
- - *Synchronizace dat:* Automatický export logů z SD karty přes Wi-Fi (připojení k domácí síti nebo mobilnímu hotspotu).
+ - **Synchronizace dat:** Automatický export logů z SD karty přes Wi-Fi (připojení k domácí síti nebo mobilnímu hotspotu).
 
- - *Webový dashboard:*
+ - **Webový dashboard:**
 
     - Interaktivní vykreslení trasy jízdy na mapových podkladech (např. Leaflet.js).
 
