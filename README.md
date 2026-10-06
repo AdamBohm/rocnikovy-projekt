@@ -20,13 +20,13 @@ Zařízení je navrženo jako zcela autonomní a galvanicky oddělené od řídi
 Projekt je rozdělen do čtyř provázaných technologických celků:
 
 A. Hardware & Senzorika
- - Řídicí mikrokontrolér: ESP32-S3 (dvoujádrový procesor 240 MHz, podpora FreeRTOS, Wi-Fi, BLE).
+ - Řídicí mikrokontrolér: ESP32 (dvoujádrový procesor 240 MHz, podpora FreeRTOS, Wi-Fi, BLE).
 
  - Vysokofrekvenční GNSS modul: u-blox NEO-M8N nebo NEO-M9N s nastavitelnou vzorkovací frekvencí 10 až 25 Hz (standardní GPS moduly pracují pouze na 1 Hz, což je pro dynamická měření nedostatečné).
 
- - IMU jednotka (Inerciální měření): 6osý akcelerometr a gyroskop (např. MPU-6050 nebo BMI270) vzorkovaný na frekvenci 100 Hz.
+ - IMU jednotka (Inerciální měření): 6osý akcelerometr a gyroskop **MPU-6050** vzorkovaný na frekvenci 100 Hz.
 
- - Lokální periferie: IPS/OLED grafický displej pro zobrazení naměřených hodnot řidiči v reálném čase, slot pro MicroSD kartu pro ukládání surových logů.
+ - Lokální periferie: **0.96" OLED (SSD1306)** pro zobrazení naměřených hodnot řidiči v reálném čase, slot pro MicroSD kartu pro ukládání surových logů.
 
 B. Nízkoúrovňový firmware (C/C++) & Fyzikální výpočty
 
