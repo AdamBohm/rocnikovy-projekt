@@ -14,21 +14,18 @@ Zařízení je navrženo jako zcela autonomní a galvanicky oddělené od řídi
 
  - Nezávislé napájení: Jednotka je napájena buď z vlastního integrovaného Li-Ion akumulátoru, nebo ze standardní 12V autozásuvky (zapalovače) přes certifikovaný DC-DC měnič s integrovanými ochranami proti přepětí a zkratu.
 
- - Riziko poškození elektroinstalace vozu je z principu nulové.
-
 ### 3. Technologická architektura projektu
-Projekt je rozdělen do čtyř provázaných technologických celků:
 
 A. Hardware & Senzorika
- - Řídicí mikrokontrolér: ESP32 (dvoujádrový procesor 240 MHz, podpora FreeRTOS, Wi-Fi, BLE).
+ - **ESP32-S3**
 
- - Vysokofrekvenční GNSS modul: u-blox NEO-M8N nebo NEO-M9N s nastavitelnou vzorkovací frekvencí 10 až 25 Hz (standardní GPS moduly pracují pouze na 1 Hz, což je pro dynamická měření nedostatečné).
+ - **ATGM336H**
 
- - IMU jednotka (Inerciální měření): 6osý akcelerometr a gyroskop **MPU-6050** vzorkovaný na frekvenci 100 Hz.
+ - **MPU-6050** 
 
- - Lokální periferie: **0.96" OLED (SSD1306)** pro zobrazení naměřených hodnot řidiči v reálném čase, slot pro MicroSD kartu pro ukládání surových logů.
+ - **0.96" OLED**
 
-B. Nízkoúrovňový firmware (C/C++) & Fyzikální výpočty
+B. Nízkoúrovňový firmware (C) & Fyzikální výpočty
 
  - Parsování binárního protokolu: Místo pomalého textového protokolu NMEA bude implementován přímo nízkoúrovňový binární protokol u-blox UBX (zprávy UBX-NAV-PVT) přes vysokorychlostní UART sběrnici (115 200–460 800 baudů).
  - G-Trigger (Hardwarová eliminace latence GPS): Detekce startu měření v přesném čase $t=0$ pomocí hardwarového přerušení (interrupt) z akcelerometru při překročení prahové hodnoty přetížení (např. 0,1 G).Sub-sample matematická interpolace: Výpočet přesného okamžiku protnutí cílové rychlosti (např. 100,00 km/h) pomocí lineární/polynomické interpolace mezi dvěma po sobě jdoucími vzorky GPS pro dosažení přesnosti na setiny sekundy.
@@ -37,16 +34,12 @@ B. Nízkoúrovňový firmware (C/C++) & Fyzikální výpočty
 C. Mechanická konstrukce & 3D modelování (CAD)
  - Návrh v CAD softwaru: Konstrukce kompaktního pouzdra s ohledem na ergonomii, chlazení a umístění GPS antény.
 
- - Výroba aditivní technologií (3D tisk): Použití teplotně odolných materiálů do interiéru automobilu (PETG, ASA nebo ABS – odolnost vůči teplotám nad 70 °C v letních měsících na slunci; vyřazení nevhodného PLA).
+ - Výroba aditivní technologií (3D tisk): Použití teplotně odolných materiálů do interiéru automobilu (PETG, ASA nebo ABS – odolnost vůči teplotám nad 70 °C v letních měsících na slunci).
 
- - Mechanické uchycení: Integrované magnety a montážní body pro adaptér na sklo/palubní desku.
+D. Softwarová platforma
+- **Backend:** Web server (Django) s relační databází (PostgreSQL) nebo časovou databází pro telemetrii.
 
-D. Softwarová platforma (Backend & Frontend)
-- **Backend:** REST API server (Python / FastAPI nebo Django) s relační databází (PostgreSQL) nebo časovou databází pro telemetrii.
-
- - **Synchronizace dat:** Automatický export logů z SD karty přes Wi-Fi (připojení k domácí síti nebo mobilnímu hotspotu).
-
- - **Webový dashboard:**
+ - **Webserverový dashboard:**
 
     - Interaktivní vykreslení trasy jízdy na mapových podkladech (např. Leaflet.js).
 
@@ -57,8 +50,8 @@ D. Softwarová platforma (Backend & Frontend)
 ### 4. Předpokládané výstupy práce
  - Funkční fyzické zařízení v 3D tištěném pouzdře připravené k provozu.
 
- - Zdrojový kód firmwaru pro ESP32 v C/C++ s implementovaným UBX parserem a G-triggerem.
+ - Zdrojový kód firmwaru pro ESP32 v C++ s implementovaným UBX parserem a G-triggerem.
 
- - Běžící webová aplikace pro nahrávání, ukládání a vizualizaci telemetrických dat.
+ - Běžící webová aplikace pro ukládání a vizualizaci telemetrických dat.
 
  - Technická dokumentace obsahující elektrická schémata, CAD výkresy, popis algoritmů a naměřená reálná data s analýzou přesnosti.
