@@ -17,6 +17,7 @@ Zařízení je navrženo jako zcela autonomní a galvanicky oddělené od řídi
 ### 3. Technologická architektura projektu
 
 A. Hardware & Senzorika
+
  - **ESP32-S3**
 
  - **ATGM336H**
@@ -24,12 +25,14 @@ A. Hardware & Senzorika
  - **MPU-6050** 
 
  - **0.96" OLED**
+ - 
+ - **čtečka SD karty**
 
 B. Nízkoúrovňový firmware (C) & Fyzikální výpočty
 
- - Parsování binárního protokolu: Místo pomalého textového protokolu NMEA bude implementován přímo nízkoúrovňový binární protokol u-blox UBX (zprávy UBX-NAV-PVT) přes vysokorychlostní UART sběrnici (115 200–460 800 baudů).
+ - Parsování binárního protokolu: Místo pomalého textového protokolu NMEA bude implementován přímo nízkoúrovňový binární protokol NMEA 0183 přes vysokorychlostní UART sběrnici (115 200–460 800 baudů).
  - G-Trigger (Hardwarová eliminace latence GPS): Detekce startu měření v přesném čase $t=0$ pomocí hardwarového přerušení (interrupt) z akcelerometru při překročení prahové hodnoty přetížení (např. 0,1 G).Sub-sample matematická interpolace: Výpočet přesného okamžiku protnutí cílové rychlosti (např. 100,00 km/h) pomocí lineární/polynomické interpolace mezi dvěma po sobě jdoucími vzorky GPS pro dosažení přesnosti na setiny sekundy.
- - Validace sklonu trati: Automatický výpočet výškového profilu trasy; detekce a penalizace sklonu vozovky převyšujícího 1 % (standard profesionální telemetrie).Využití FreeRTOS: Rozdělení úloh mezi jádra (Core 0: vysokorychlostní sběr a zápis na SD; Core 1: matematické výpočty, obsluha displeje a síťová vrstva).
+ - Validace sklonu trati: Automatický výpočet výškového profilu trasy; detekce a penalizace sklonu vozovky převyšujícího 1 % (standard profesionální telemetrie). Využití FreeRTOS: Rozdělení úloh mezi jádra (Core 0: vysokorychlostní sběr a zápis na SD; Core 1: matematické výpočty, obsluha displeje a síťová vrstva).
 
 C. Mechanická konstrukce & 3D modelování (CAD)
  - Návrh v CAD softwaru: Konstrukce kompaktního pouzdra s ohledem na ergonomii, chlazení a umístění GPS antény.
