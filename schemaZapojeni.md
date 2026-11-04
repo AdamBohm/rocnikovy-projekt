@@ -1,5 +1,7 @@
 # Schéma zapojení 
 
+## ESP32-S3 a všechny potřebné komponenty
+
 **Vlevo nahoře:** 
   *  **I2C OLED Displej (SSD1306)**
       * VCC: červená linka **3V3**
