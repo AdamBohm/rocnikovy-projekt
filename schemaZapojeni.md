@@ -1,4 +1,4 @@
-#Schéma zapojení 
+# Schéma zapojení 
 
 **Vlevo nahoře:** 
   *  **I2C OLED Displej (SSD1306)**
