@@ -31,4 +31,4 @@
       * SCK: šedý vodič -> **GPIO 12**
       * DO(MISO): oranžový vodič -> **GPIO 13**   
 
-      ![Schéma]("https://github.com/AdamBohm/rocnikovy-projekt/new/main")
+      ![Schéma](https://github.com/AdamBohm/rocnikovy-projekt/new/main)
